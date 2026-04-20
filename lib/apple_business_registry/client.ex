@@ -15,6 +15,7 @@ defmodule AppleBusinessRegistry.Client do
 
   @meta_keys [:decode, :params]
 
+  @doc "Make an authenticated GET request to the API."
   @spec get(String.t(), keyword()) :: {:ok, term()} | {:error, term()}
   def get(path, opts) do
     {config_opts, meta, params} = split_opts(opts)
@@ -41,6 +42,7 @@ defmodule AppleBusinessRegistry.Client do
     end
   end
 
+  @doc "Make an authenticated POST request to the API."
   @spec post(String.t(), map(), keyword()) :: {:ok, term()} | {:error, term()}
   def post(path, body, opts) do
     {config_opts, meta, _params} = split_opts(opts)
@@ -64,6 +66,7 @@ defmodule AppleBusinessRegistry.Client do
     end
   end
 
+  @doc "Make an authenticated PATCH request to the API."
   @spec patch(String.t(), map(), keyword()) :: {:ok, term()} | {:error, term()}
   def patch(path, body, opts) do
     {config_opts, meta, _params} = split_opts(opts)
@@ -87,6 +90,7 @@ defmodule AppleBusinessRegistry.Client do
     end
   end
 
+  @doc "Make an authenticated DELETE request to the API."
   @spec delete(String.t(), keyword()) :: :ok | {:error, term()}
   def delete(path, opts) do
     {config_opts, _meta, _params} = split_opts(opts)

@@ -9,6 +9,7 @@ defmodule AppleBusinessRegistry.Error do
           details: term()
         }
 
+  @doc "Create an error from an HTTP response."
   @spec from_http(non_neg_integer(), term()) :: t()
   def from_http(status, body) do
     %__MODULE__{
