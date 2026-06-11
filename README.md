@@ -25,7 +25,7 @@ The implemented API includes:
 ```elixir
 defp deps do
   [
-    {:apple_business_registry, "~> 0.1.0"}
+    {:apple_business_registry, "~> 0.3.0"}
   ]
 end
 ```

@@ -60,22 +60,24 @@ defmodule AppleBusinessRegistry.Location do
   @spec from_map(map()) :: t()
   def from_map(attrs) when is_map(attrs) do
     %__MODULE__{
-      id: attrs["id"] || attrs[:id],
-      business_id: attrs["businessId"] || attrs[:business_id],
-      name: attrs["name"] || attrs[:name],
-      address: attrs["address"] || attrs[:address],
-      locality: attrs["locality"] || attrs[:locality],
-      administrative_area: attrs["administrativeArea"] || attrs[:administrative_area],
-      postal_code: attrs["postalCode"] || attrs[:postal_code],
-      country: attrs["country"] || attrs[:country],
-      phone: attrs["phone"] || attrs[:phone],
-      latitude: parse_coordinate(attrs["latitude"] || attrs[:latitude]),
-      longitude: parse_coordinate(attrs["longitude"] || attrs[:longitude]),
-      status: attrs["status"] || attrs[:status],
-      created_at: attrs["createdAt"] || attrs[:created_at],
-      updated_at: attrs["updatedAt"] || attrs[:updated_at]
+      id: fetch(attrs, "id", :id),
+      business_id: fetch(attrs, "businessId", :business_id),
+      name: fetch(attrs, "name", :name),
+      address: fetch(attrs, "address", :address),
+      locality: fetch(attrs, "locality", :locality),
+      administrative_area: fetch(attrs, "administrativeArea", :administrative_area),
+      postal_code: fetch(attrs, "postalCode", :postal_code),
+      country: fetch(attrs, "country", :country),
+      phone: fetch(attrs, "phone", :phone),
+      latitude: parse_coordinate(fetch(attrs, "latitude", :latitude)),
+      longitude: parse_coordinate(fetch(attrs, "longitude", :longitude)),
+      status: fetch(attrs, "status", :status),
+      created_at: fetch(attrs, "createdAt", :created_at),
+      updated_at: fetch(attrs, "updatedAt", :updated_at)
     }
   end
+
+  defp fetch(attrs, string_key, atom_key), do: attrs[string_key] || attrs[atom_key]
 
   @doc """
   Encode a `%Location{}` struct into a map for API requests.

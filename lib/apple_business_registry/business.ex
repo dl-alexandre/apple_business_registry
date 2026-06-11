@@ -48,18 +48,20 @@ defmodule AppleBusinessRegistry.Business do
   @spec from_map(map()) :: t()
   def from_map(attrs) when is_map(attrs) do
     %__MODULE__{
-      id: attrs["id"] || attrs[:id],
-      name: attrs["name"] || attrs[:name],
-      organization_type: attrs["organizationType"] || attrs[:organization_type],
-      primary_phone: attrs["primaryPhone"] || attrs[:primary_phone],
-      primary_email: attrs["primaryEmail"] || attrs[:primary_email],
-      website: attrs["website"] || attrs[:website],
-      description: attrs["description"] || attrs[:description],
-      status: attrs["status"] || attrs[:status],
-      created_at: attrs["createdAt"] || attrs[:created_at],
-      updated_at: attrs["updatedAt"] || attrs[:updated_at]
+      id: fetch(attrs, "id", :id),
+      name: fetch(attrs, "name", :name),
+      organization_type: fetch(attrs, "organizationType", :organization_type),
+      primary_phone: fetch(attrs, "primaryPhone", :primary_phone),
+      primary_email: fetch(attrs, "primaryEmail", :primary_email),
+      website: fetch(attrs, "website", :website),
+      description: fetch(attrs, "description", :description),
+      status: fetch(attrs, "status", :status),
+      created_at: fetch(attrs, "createdAt", :created_at),
+      updated_at: fetch(attrs, "updatedAt", :updated_at)
     }
   end
+
+  defp fetch(attrs, string_key, atom_key), do: attrs[string_key] || attrs[atom_key]
 
   @doc """
   Encode a `%Business{}` struct into a map for API requests.

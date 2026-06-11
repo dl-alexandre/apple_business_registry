@@ -1,7 +1,7 @@
 defmodule AppleBusinessRegistry.TokenCacheTest do
   use ExUnit.Case
 
-  alias AppleBusinessRegistry.{TokenCache, TestKey}
+  alias AppleBusinessRegistry.{TestKey, TokenCache}
 
   setup do
     # Ensure the cache is cleared before each test
